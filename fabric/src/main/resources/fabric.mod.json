@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "caffeineconfig",
+  "version": "${version}",
+  "name": "CaffeineConfig",
+  "description": "A small library providing a config system that allows the user and other mods to disable mixins from being applied.",
+  "authors": [
+    "CaffeineMC"
+  ],
+  "contributors": [
+    "altrisi",
+    "Crystal0404",
+    "EarthComputer",
+    "jellysquid3",
+    "2No2Name"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "LGPL-3.0",
+  "environment": "*",
+  "depends": {
+    "fabricloader": ">=0.14.25"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": ["library"]
+    }
+  }
+}

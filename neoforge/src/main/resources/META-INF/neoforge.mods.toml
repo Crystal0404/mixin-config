@@ -1,0 +1,29 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+#issueTrackerURL = ""
+license = "LGPL-3.0"
+
+[[mods]]
+modId = "caffeineconfig"
+version = "${version}"
+displayName = "CaffeineConfig"
+authors = "altrisi, Crystal0404, EarthComputer, jellysquid3, 2No2Name"
+description = '''
+A small library providing a config system that allows the user and other mods to disable mixins from being applied.
+'''
+#logoFile = ""
+
+# https://github.com/neoforged/FancyModLoader/pull/100
+[[dependencies.caffeineconfig]]
+modId = "neoforge"
+type = "required"
+versionRange = "[20.6,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.caffeineconfig]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.20.6,)"
+ordering = "NONE"
+side = "BOTH"
