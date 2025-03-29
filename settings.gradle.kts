@@ -1,0 +1,19 @@
+pluginManagement {
+    repositories {
+        maven { url = uri("https://maven.fabricmc.net/") }
+        maven { url = uri("https://maven.architectury.dev/") }
+        if (System.getenv("CI") != "true" /* not run in github actions */ ) {
+            // If you're not from China, please remove this, it will slow down your downloads
+            maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin") }
+        }
+        mavenCentral()
+        maven { url = uri("https://maven.neoforged.net/releases") }
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = "CaffeineConfig"
+
+include("common")
+include("fabric")
+include("neoforge")
