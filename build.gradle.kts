@@ -13,8 +13,17 @@ architectury {
 }
 
 allprojects {
+    fun getVersion(): String {
+        var version = rootProject.property("mod_version") as String
+        if (System.getenv("BUILD_RELEASE") != "true" && System.getenv("JITPACK") != "true") {
+            val buildNumber = System.getenv("BUILD_ID")
+            version += if (buildNumber != null) ("+build.$buildNumber") else "-SNAPSHOT"
+        }
+        return version
+    }
+
     group = rootProject.property("maven_group") as String
-    version = rootProject.property("mod_version") as String
+    version = getVersion()
 }
 
 subprojects {
