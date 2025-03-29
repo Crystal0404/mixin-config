@@ -14,7 +14,6 @@ architectury {
 
 allprojects {
     fun getVersion(): String {
-        println(System.getenv("GITHUB_RUN_NUMBER"))
         var version = rootProject.property("mod_version") as String
         if (System.getenv("BUILD_RELEASE") != "true" && System.getenv("JITPACK") != "true") {
             val buildNumber = System.getenv("GITHUB_RUN_NUMBER")
