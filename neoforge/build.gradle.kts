@@ -46,6 +46,10 @@ loom {
     }
 }
 
+tasks.sourcesJar {
+    from(project(":common").sourceSets["main"].allSource)
+}
+
 tasks.processResources {
     inputs.property("version", project.version)
 
