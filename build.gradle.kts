@@ -1,7 +1,7 @@
 import net.fabricmc.loom.api.LoomGradleExtensionAPI
 
 plugins {
-    id("dev.architectury.loom").version("1.9-SNAPSHOT").apply(false)
+    id("dev.architectury.loom").version("1.10-SNAPSHOT").apply(false)
     id("architectury-plugin").version("3.4-SNAPSHOT")
     id("com.github.johnrengelman.shadow").version("8.1.1").apply(false)
     id("java")
@@ -57,6 +57,14 @@ subprojects {
 
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    tasks.jar {
+        inputs.property("archives_name", project.base.archivesName)
+
+        from(rootProject.file("LICENSE.txt")) {
+            rename { "LICENSE_${project.property("archives_name")}" }
+        }
     }
 
     tasks.withType<JavaCompile>().configureEach {
