@@ -51,6 +51,16 @@ subprojects {
         })
     }
 
+    configure<LoomGradleExtensionAPI> {
+        runConfigs.configureEach {
+            vmArg("-Dmixin.debug.export=true")
+        }
+
+        mixin {
+            useLegacyMixinAp.set(false)
+        }
+    }
+
     java {
         // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
         // if it is present.

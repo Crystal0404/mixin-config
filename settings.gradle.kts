@@ -10,8 +10,8 @@ pluginManagement {
             }
         }
         mavenCentral()
-        maven { url = uri("https://maven.neoforged.net/releases") }
         gradlePluginPortal()
+        maven { url = uri("https://maven.neoforged.net/releases") }
     }
 }
 
@@ -20,3 +20,12 @@ rootProject.name = "CaffeineConfig"
 include("common")
 include("fabric")
 include("neoforge")
+
+// test
+include(":test-common")
+include(":test-fabric")
+include(":test-neoforge")
+
+project(":test-common").projectDir = file("testmod/test-common")
+project(":test-fabric").projectDir = file("testmod/test-fabric")
+project(":test-neoforge").projectDir = file("testmod/test-neoforge")

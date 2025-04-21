@@ -40,12 +40,6 @@ dependencies {
     "shadowBundle"(project(":common", configuration = "transformProductionNeoForge"))
 }
 
-loom {
-    mixin {
-        useLegacyMixinAp.set(false)
-    }
-}
-
 tasks.sourcesJar {
     from(project(":common").sourceSets["main"].allSource)
 }

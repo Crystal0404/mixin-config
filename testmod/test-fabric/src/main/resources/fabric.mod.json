@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "example_mod",
+  "version": "1.0.0",
+  "name": "Example Mod",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Crystal0404"
+  ],
+  "license": "LGPL-3.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.example.fabric.ExampleModFabric"
+    ]
+  },
+  "mixins": [
+    "example_mod.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.14",
+    "minecraft": "~1.21.1",
+    "java": ">=21"
+  },
+  "custom": {
+    "test:options": {
+      "mixin.test4": false
+    }
+  }
+}

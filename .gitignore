@@ -21,12 +21,8 @@ bin/
 .project
 
 # fabric + neoforge
-
-/run/
-/common/run/
-/fabric/run/
-/neoforge/run/
-/neoforge/runs/
+run/
+runs/
 
 # macOS
 
