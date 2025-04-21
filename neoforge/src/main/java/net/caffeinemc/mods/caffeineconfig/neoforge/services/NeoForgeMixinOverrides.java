@@ -1,4 +1,4 @@
-package net.caffeinemc.mods.caffeineconfig.neoforge;
+package net.caffeinemc.mods.caffeineconfig.neoforge.services;
 
 import net.caffeinemc.mods.caffeineconfig.services.PlatformMixinOverrides;
 import net.neoforged.fml.loading.FMLLoader;

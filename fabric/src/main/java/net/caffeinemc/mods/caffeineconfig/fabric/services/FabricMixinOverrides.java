@@ -1,4 +1,4 @@
-package net.caffeinemc.mods.caffeineconfig.fabric;
+package net.caffeinemc.mods.caffeineconfig.fabric.services;
 
 import net.caffeinemc.mods.caffeineconfig.services.PlatformMixinOverrides;
 import net.fabricmc.loader.api.FabricLoader;
