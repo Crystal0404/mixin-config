@@ -82,3 +82,30 @@ tasks.shadowJar {
 tasks.remapJar {
     inputFile.set(tasks.shadowJar.get().archiveFile)
 }
+
+publishMods {
+    val isEnableDebug = providers.environmentVariable("BUILD_RELEASE").orNull == null
+    dryRun = isEnableDebug
+
+    file = tasks.remapJar.get().archiveFile
+    additionalFiles.from(tasks.sourcesJar.get().archiveFile)
+    changelog = if (isEnableDebug) "## Test" else providers.environmentVariable("CHANGELOG").toString()
+    val modVersion = "${rootProject.property("mod_version")}"
+    version = "v$modVersion-fabric"
+    displayName = "CaffeineConfig v$modVersion for Fabric"
+    type = when {
+        modVersion.endsWith("-alpha") -> ALPHA
+        modVersion.endsWith("-beta") -> BETA
+        else -> STABLE
+    }
+    modLoaders.add("fabric")
+
+//    modrinth {
+//        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+//        projectId = "123456"
+//        minecraftVersionRange {
+//            start = "1.14.4"
+//            end = "latest"
+//        }
+//    }
+}
