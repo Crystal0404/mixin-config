@@ -6,7 +6,7 @@ import net.caffeinemc.mods.caffeineconfig.config.CaffeineConfig;
 public class MixinPlugin extends AbstractCaffeineConfigMixinPlugin {
     @Override
     protected CaffeineConfig createConfig() {
-        return CaffeineConfig.builder(ExampleMod.MOD_NAME, ExampleMod.MOD_ID, MixinPlugin.class)
+        return CaffeineConfig.builder(ExampleMod.MOD_ID, MixinPlugin.class)
                 .addMixinOption("mixin.test1", true)
                 .addOptionDependency("mixin.test1", "mixin.test2", true)
                 .withDefaultPropertiesPath("/config/common/default.properties")

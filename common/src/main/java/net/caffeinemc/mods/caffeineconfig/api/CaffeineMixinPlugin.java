@@ -17,7 +17,7 @@ import net.caffeinemc.mods.caffeineconfig.config.Option;
  *  {@code
  * public class MixinPlugin implements IMixinConfigPlugin {
  *     private final CaffeineConfig config =
- *             CaffeineConfig.builder("Test", "test", MixinPlugin.class)
+ *             CaffeineConfig.builder("test", MixinPlugin.class)
  *                     .addMixinOption("mixin.test1", true)
  *                     .addOptionDependency("mixin.test1", "mixin.test2", true)
  *                     .withDefaultPropertiesPath("/assets/test/default.properties")

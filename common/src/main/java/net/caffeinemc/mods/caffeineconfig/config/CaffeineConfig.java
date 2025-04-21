@@ -3,6 +3,7 @@ package net.caffeinemc.mods.caffeineconfig.config;
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet;
 import net.caffeinemc.mods.caffeineconfig.CaffeineConfigMod;
 import net.caffeinemc.mods.caffeineconfig.services.PlatformMixinOverrides;
+import net.caffeinemc.mods.caffeineconfig.services.PlatformRuntimeInformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -267,7 +268,7 @@ public class CaffeineConfig {
      * <p>Example usage:</p>
      * <pre>
      * {@code
-     * CaffeineConfig config = CaffeineConfig.builder("Test", "test", MixinPlugin.class)
+     * CaffeineConfig config = CaffeineConfig.builder("test", MixinPlugin.class)
      *     .addMixinOption("mixin.test1", "mixin.test2", true)
      *     .addOptionDependency("mixin.example", "mixin.dependency", true)
      *     .withDefaultPropertiesPath("/assets/test/default.properties")
@@ -278,13 +279,12 @@ public class CaffeineConfig {
      * }
      * </pre>
      *
-     * @param name  Your mod name.
      * @param id    Your mod id.
      * @param clazz You mixin plugin class.
      * @return A new {@link Builder} instance.
      */
-    public static Builder builder(String name, String id, Class<?> clazz) {
-        return new Builder(name, id, clazz);
+    public static Builder builder(String id, Class<?> clazz) {
+        return new Builder(id, clazz);
     }
 
     @SuppressWarnings("unused")
@@ -301,8 +301,8 @@ public class CaffeineConfig {
 
         private Builder() {}
 
-        private Builder(String name, String id, Class<?> clazz) {
-            this.name = name;
+        private Builder(String id, Class<?> clazz) {
+            this.name = PlatformRuntimeInformation.getInstance().getModInfoById(id).modName();
             this.id = id;
             this.clazz = clazz;
         }
