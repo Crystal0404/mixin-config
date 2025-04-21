@@ -213,7 +213,7 @@ public class CaffeineConfig {
         return changed;
     }
 
-    private static void writeDefaultConfig(File file, String url) throws IOException {
+    private static void writeDefaultConfig(File file, String modName, String url) throws IOException {
         File dir = file.getParentFile();
 
         if (!dir.exists()) {
@@ -225,7 +225,7 @@ public class CaffeineConfig {
         }
 
         try (Writer writer = new FileWriter(file)) {
-            writer.write("# This is the configuration file for Lithium.\n");
+            writer.write(String.format("# This is the configuration file for %s.\n", modName));
             writer.write("#\n");
             writer.write("# You can find information on editing this file and all the available options here:\n");
             writer.write(String.format("# %s\n", url));
@@ -406,7 +406,7 @@ public class CaffeineConfig {
 
             } else {
                 try {
-                    writeDefaultConfig(file, this.infoUrl);
+                    writeDefaultConfig(file, this.name, this.infoUrl);
                 } catch (IOException e) {
                     CaffeineConfigMod.LOGGER.warn("Could not write default configuration file", e);
                 }

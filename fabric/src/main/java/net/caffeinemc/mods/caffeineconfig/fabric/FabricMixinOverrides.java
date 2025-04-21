@@ -16,17 +16,17 @@ public class FabricMixinOverrides implements PlatformMixinOverrides {
     @Override
     public List<MixinOverride> applyModOverrides(String name, String id) {
         Logger logger = LoggerFactory.getLogger(name);
-        String JSON_KEY_LITHIUM_OPTIONS = id + ":options";
+        String JSON_KEY_OPTIONS = id + ":options";
         List<MixinOverride> list = new ArrayList<>();
 
         for (ModContainer container : FabricLoader.getInstance().getAllMods()) {
             ModMetadata meta = container.getMetadata();
 
-            if (meta.containsCustomValue(JSON_KEY_LITHIUM_OPTIONS)) {
-                CustomValue overrides = meta.getCustomValue(JSON_KEY_LITHIUM_OPTIONS);
+            if (meta.containsCustomValue(JSON_KEY_OPTIONS)) {
+                CustomValue overrides = meta.getCustomValue(JSON_KEY_OPTIONS);
 
                 if (overrides.getType() != CustomValue.CvType.OBJECT) {
-                    logger.info("[{}] Mod '{}' contains invalid Lithium option overrides, ignoring", name, meta.getId());
+                    logger.info("[{}] Mod '{}' contains invalid {} option overrides, ignoring", name, name, meta.getId());
                     continue;
                 }
 

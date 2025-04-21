@@ -14,11 +14,11 @@ public class NeoForgeMixinOverrides implements PlatformMixinOverrides {
     @Override
     public List<MixinOverride> applyModOverrides(String name, String id) {
         Logger logger = LoggerFactory.getLogger(name);
-        String JSON_KEY_LITHIUM_OPTIONS = id + ":options";
+        String JSON_KEY_OPTIONS = id + ":options";
         List<MixinOverride> list = new ArrayList<>();
 
         for (ModInfo meta : FMLLoader.getLoadingModList().getMods()) {
-            meta.getOwningFile().getConfigElement(JSON_KEY_LITHIUM_OPTIONS).ifPresent(override -> {
+            meta.getOwningFile().getConfigElement(JSON_KEY_OPTIONS).ifPresent(override -> {
                 if (override instanceof Map<?, ?> overrides && overrides.keySet().stream().allMatch(key -> key instanceof String)) {
                     overrides.forEach((key, value) -> {
                         if (!(value instanceof Boolean) || !(key instanceof String)) {
@@ -29,7 +29,7 @@ public class NeoForgeMixinOverrides implements PlatformMixinOverrides {
                         list.add(new MixinOverride(meta.getModId(), (String) key, (Boolean) value));
                     });
                 } else {
-                    logger.info("[{}] '{}' contains invalid Lithium option overrides, ignoring", name, meta.getModId());
+                    logger.info("[{}] '{}' contains invalid {} option overrides, ignoring", name, name, meta.getModId());
                 }
             });
         }
