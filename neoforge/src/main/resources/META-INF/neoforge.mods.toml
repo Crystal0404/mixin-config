@@ -11,7 +11,7 @@ authors = "altrisi, Crystal0404, EarthComputer, jellysquid3, 2No2Name"
 description = '''
 A small library providing a config system that allows the user and other mods to disable mixins from being applied.
 '''
-#logoFile = ""
+logoFile = "assets/caffeineconfig/icon.png"
 
 # https://github.com/neoforged/FancyModLoader/pull/100
 [[dependencies.caffeineconfig]]
