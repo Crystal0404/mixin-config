@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "caffeineconfig",
   "version": "${version}",
-  "name": "CaffeineConfig",
+  "name": "Caffeine Config",
   "description": "A small library providing a config system that allows the user and other mods to disable mixins from being applied.",
   "authors": [
     "CaffeineMC"
