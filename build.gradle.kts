@@ -74,7 +74,7 @@ subprojects {
     tasks.jar {
         inputs.property("archives_name", project.base.archivesName)
 
-        from(rootProject.file("LICENSE.txt")) {
+        from(rootProject.file("LICENSE")) {
             rename { "LICENSE_${project.property("archives_name")}" }
         }
     }
