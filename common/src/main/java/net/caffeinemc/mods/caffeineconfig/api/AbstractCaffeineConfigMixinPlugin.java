@@ -28,7 +28,7 @@ import java.util.Set;
  *                 .withDefaultPropertiesPath("/assets/test/default.properties")
  *                 .withDependenciesPath("/assets/test/dependencies.properties")
  *                 .withInfoUrl("www.test.com")
- *                 .withMixinPackageRoot("com.example.fabric.mixin.")
+ *                 .withMixinPackageRoot("com.example.fabric.mixin")
  *                 .buildOrThrow("./config/test.properties");
  *     }
  * }

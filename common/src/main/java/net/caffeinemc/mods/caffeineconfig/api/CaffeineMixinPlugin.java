@@ -23,7 +23,7 @@ import net.caffeinemc.mods.caffeineconfig.config.Option;
  *                     .withDefaultPropertiesPath("/assets/test/default.properties")
  *                     .withDependenciesPath("/assets/test/dependencies.properties")
  *                     .withInfoUrl("www.test.com")
- *                     .withMixinPackageRoot("com.example.neoforge.mixin.")
+ *                     .withMixinPackageRoot("com.example.neoforge.mixin")
  *                     .buildOrThrow("./config/test.properties");
  *
  *     private final CaffeineMixinPlugin plugin = CaffeineMixinPlugin.init(config);

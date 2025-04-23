@@ -274,7 +274,7 @@ public class CaffeineConfig {
      *     .withDefaultPropertiesPath("/assets/test/default.properties")
      *     .withDependenciesPath("/assets/test/dependencies.properties")
      *     .withInfoUrl("https://example.com")
-     *     .withMixinPackageRoot("com.example.fabric.mixin.")
+     *     .withMixinPackageRoot("com.example.fabric.mixin")
      *     .buildOrThrow("./config/test.properties");
      * }
      * </pre>
@@ -374,7 +374,7 @@ public class CaffeineConfig {
          * @return The current Builder instance for method chaining.
          */
         public Builder withMixinPackageRoot(String... mixinPackageRoot) {
-            this.mixinPackageRoot = mixinPackageRoot;
+            this.mixinPackageRoot = Arrays.stream(mixinPackageRoot).map(s -> s + ".").toArray(String[]::new);
             return this;
         }
 

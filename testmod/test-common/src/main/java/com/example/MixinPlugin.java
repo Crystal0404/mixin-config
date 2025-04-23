@@ -12,7 +12,7 @@ public class MixinPlugin extends AbstractCaffeineConfigMixinPlugin {
                 .withDefaultPropertiesPath("/config/common/default.properties")
                 .withDependenciesPath("/config/common/dependencies.properties")
                 .withInfoUrl("www.test.com")
-                .withMixinPackageRoot("com.example.mixin.")
+                .withMixinPackageRoot("com.example.mixin")
                 .buildOrThrow("./config/test.properties");
     }
 
