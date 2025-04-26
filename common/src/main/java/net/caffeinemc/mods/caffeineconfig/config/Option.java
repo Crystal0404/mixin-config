@@ -2,7 +2,6 @@ package net.caffeinemc.mods.caffeineconfig.config;
 
 import it.unimi.dsi.fastutil.objects.Object2BooleanLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2BooleanMap;
-import org.slf4j.Logger;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -77,7 +76,7 @@ public class Option {
         this.dependencies.put(dependencyOption, requiredValue);
     }
 
-    public boolean disableIfDependenciesNotMet(Logger logger, CaffeineConfig config) {
+    public boolean disableIfDependenciesNotMet(CaffeineConfig config) {
         if (this.dependencies != null && this.isEnabled()) {
             for (Object2BooleanMap.Entry<Option> dependency : this.dependencies.object2BooleanEntrySet()) {
                 Option option = dependency.getKey();
@@ -85,7 +84,7 @@ public class Option {
                 boolean enabledRecursive = option.isEnabledRecursive(config);
                 if (enabledRecursive != requiredValue) {
                     this.enabled = false;
-                    logger.info("Option '{}' requires '{}={}' but found '{}'. Setting '{}={}'.", this.name, option.name, requiredValue, enabledRecursive, this.name, this.enabled);
+                    config.getLogger().info("Option '{}' requires '{}={}' but found '{}'. Setting '{}={}'.", this.name, option.name, requiredValue, enabledRecursive, this.name, this.enabled);
                     return true;
                 }
             }

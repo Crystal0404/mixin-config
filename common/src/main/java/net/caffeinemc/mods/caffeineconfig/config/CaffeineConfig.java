@@ -13,6 +13,7 @@ import java.util.*;
 public class CaffeineConfig {
     private final Logger logger;
     private final String name;
+    private final String id;
     private final String[] mixinPackageRoot;
     private final Map<String, Option> options = new HashMap<>();
     private final Set<Option> optionsWithDependencies = new ObjectLinkedOpenHashSet<>();
@@ -25,6 +26,10 @@ public class CaffeineConfig {
         return this.name;
     }
 
+    public String getId() {
+        return this.id;
+    }
+
     public Logger getLogger() {
         return this.logger;
     }
@@ -32,6 +37,7 @@ public class CaffeineConfig {
     private CaffeineConfig(Builder builder) {
         this.logger = LoggerFactory.getLogger(builder.name);
         this.name = builder.name;
+        this.id = builder.id;
         this.mixinPackageRoot = builder.mixinPackageRoot;
 
         InputStream defaultPropertiesStream = builder.defaultPropertiesStream;
@@ -209,7 +215,7 @@ public class CaffeineConfig {
     private boolean applyDependenciesOnce() {
         boolean changed = false;
         for (Option optionWithDependency : this.optionsWithDependencies) {
-            changed |= optionWithDependency.disableIfDependenciesNotMet(this.logger, this);
+            changed |= optionWithDependency.disableIfDependenciesNotMet(this);
         }
         return changed;
     }
@@ -411,7 +417,7 @@ public class CaffeineConfig {
                     CaffeineConfigMod.LOGGER.warn("Could not write default configuration file", e);
                 }
             }
-            PlatformMixinOverrides.getInstance().applyModOverrides(this.name, this.id).forEach(config::applyModOverride);
+            PlatformMixinOverrides.getInstance().applyModOverrides(config).forEach(config::applyModOverride);
             config.applyDependencies();
 
             return config;
