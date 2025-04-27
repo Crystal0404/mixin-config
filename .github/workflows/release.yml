@@ -49,3 +49,4 @@ jobs:
           files: |
             fabric/build/libs/!(*-@(shadow|sources)).jar
             neoforge/build/libs/!(*-@(shadow|sources)).jar
+            gradle-plugin/mixin-config-plugin/build/libs/!(*-@(shadow|sources)).jar

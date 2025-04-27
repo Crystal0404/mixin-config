@@ -40,3 +40,4 @@ jobs:
           path: |
             fabric/build/libs/
             neoforge/build/libs/
+            gradle-plugin/mixin-config-plugin/build/libs
