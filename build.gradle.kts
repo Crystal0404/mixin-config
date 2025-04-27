@@ -9,6 +9,13 @@ plugins {
     id("maven-publish")
 }
 
+tasks.named("build") {
+    dependsOn(gradle.includedBuilds.map { it.task(":build") })
+}
+tasks.named("clean") {
+    dependsOn(gradle.includedBuilds.map { it.task(":clean") })
+}
+
 architectury {
     minecraft = project.property("minecraft_version") as String
 }
