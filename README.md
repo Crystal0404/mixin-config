@@ -1,3 +1,11 @@
+# Current Status
+
+Most of its functions have already been completed...
+
+But at the moment CaffeineMC has no demand for it, 
+
+If you are interested in its features, please send me an email `syh040325[at]163[dot]com`
+
 # CaffeineConfig
 
 CaffeineConfig is a mixin configuration manager that allows both the user and other mods to configure what mixins should
