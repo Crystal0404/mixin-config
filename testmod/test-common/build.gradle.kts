@@ -8,4 +8,7 @@ dependencies {
     // Do NOT use other classes from Fabric Loader.
     modImplementation("net.fabricmc:fabric-loader:${rootProject.property("fabric_loader_version")}")
     implementation(project(":common", configuration = "namedElements"))
+
+    // mixin config plugin
+    compileOnly("net.caffeinemc:mixin-config-plugin:1.0-SNAPSHOT")
 }

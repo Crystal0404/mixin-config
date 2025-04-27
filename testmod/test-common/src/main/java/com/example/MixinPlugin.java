@@ -9,11 +9,11 @@ public class MixinPlugin extends AbstractCaffeineConfigMixinPlugin {
         return CaffeineConfig.builder(ExampleMod.MOD_ID, MixinPlugin.class)
                 .addMixinOption("mixin.test1", true)
                 .addOptionDependency("mixin.test1", "mixin.test2", true)
-                .withDefaultPropertiesPath("/config/common/default.properties")
-                .withDependenciesPath("/config/common/dependencies.properties")
-                .withInfoUrl("www.test.com")
+                .withDefaultPropertiesPath("/assets/example/examplemod-mixin-config-default.properties")
+                .withDependenciesPath("/assets/example/examplemod-mixin-config-dependencies.properties")
+                .withInfoUrl("www.example.com")
                 .withMixinPackageRoot("com.example.mixin")
-                .buildOrThrow("./config/test.properties");
+                .buildOrThrow("./config/example.properties");
     }
 
     // If you don't need to print the debug information, you can ignore it

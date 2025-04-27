@@ -1,5 +1,6 @@
 plugins {
     id("com.github.johnrengelman.shadow")
+    id("net.caffeinemc.mixin-config-plugin").version("1.0-SNAPSHOT")
 }
 
 architectury {
@@ -8,10 +9,18 @@ architectury {
 }
 
 configurations {
-    create("common")
+    create("common") {
+        isCanBeResolved = true
+        isCanBeConsumed = false
+    }
     getByName("compileClasspath").extendsFrom(getByName("common"))
     getByName("runtimeClasspath").extendsFrom(getByName("common"))
     getByName("developmentFabric").extendsFrom(getByName("common"))
+
+    create("shadowBundle") {
+        isCanBeResolved = true
+        isCanBeConsumed = false
+    }
 }
 
 repositories {
@@ -34,6 +43,7 @@ dependencies {
     "common"(project(":test-common", configuration = "namedElements")) {
         isTransitive = false
     }
+    "shadowBundle"(project(":test-common", configuration = "transformProductionFabric"))
     implementation(project(":fabric", configuration = "namedElements"))
 
     // modmenu
@@ -49,4 +59,46 @@ dependencies {
     apiModules.forEach {
         modRuntimeOnly(fabricApi.module(it, "${rootProject.property("fabric_api_version")}"))
     }
+
+    // mixin config plugin
+    compileOnly("net.caffeinemc:mixin-config-plugin:1.0-SNAPSHOT")
+}
+
+tasks.shadowJar {
+    configurations = listOf(project.configurations.getByName("shadowBundle"))
+    archiveClassifier.set("dev-shadow")
+}
+
+tasks.remapJar {
+    inputFile.set(tasks.shadowJar.get().archiveFile)
+}
+
+sourceSets.main {
+    resources.srcDirs(layout.buildDirectory.dir("fabric-mixin-config-output").get())
+}
+
+tasks.named<net.caffeinemc.gradle.CreateMixinConfigTask>("test-fabricCreateMixinConfig") {
+    inputFiles.set(
+        listOf(
+            tasks.named("compileJava", JavaCompile::class).get().destinationDirectory.get(),
+            project(":test-common").tasks.named("compileJava", JavaCompile::class).get().destinationDirectory.get()
+        )
+    )
+    includeFiles.set(file("src/main/java/com/example"))
+    outputDirectory.set(layout.buildDirectory.dir("fabric-mixin-config-output"))
+    outputAssetsPath = "assets/example"
+    outputFilenameForSummaryDocument = "example-mod-fabric-mixin-config.md"
+    mixinParentPackages = listOf("com.example")
+    modShortName = "ExampleMod"
+
+    dependsOn("compileJava")
+    dependsOn(project(":common").tasks.named("compileJava", JavaCompile::class))
+}
+
+tasks.named("processResources") {
+    dependsOn("test-fabricCreateMixinConfig")
+}
+
+tasks.named("sourcesJar") {
+    dependsOn("test-fabricCreateMixinConfig")
 }
