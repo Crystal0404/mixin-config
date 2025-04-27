@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("java-gradle-plugin")
+    id("maven-publish")
 }
 
 base {
@@ -42,5 +43,22 @@ tasks.withType<JavaCompile> {
 tasks.jar {
     from(rootProject.file("LICENSE")) {
         rename { "LICENSE_${project.property("archives_name")}" }
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            artifactId = base.archivesName.get()
+            from(components["java"])
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+        // Notice: This block does NOT have the same function as the block in the top level.
+        // The repositories here will be used for publishing your artifact, not for
+        // retrieving dependencies.
     }
 }
